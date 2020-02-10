@@ -1,0 +1,1 @@
+{"version":3,"sources":["styles.scss","base/variable.scss"],"names":[],"mappings":"AAEA,KACI,wBCHa,CDIb,aCHW,CDIX,UAAW","file":"styles.min.css","sourcesContent":["@import 'base/variable.scss';\n\nbody {\n    background-color: $bgcolor;\n    color: $color;\n    margin: 2px;\n}","$bgcolor: #f0f0f0;\n$color: #1f578b;"]}

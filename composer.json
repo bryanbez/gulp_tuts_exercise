@@ -1,0 +1,17 @@
+{
+    "name": "bryanbez/bsardofirstplugin",
+    "description": "My First Custom Plugin",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Bryan Sardo",
+            "email": "kazuya.tamahome@ggmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {"IncludeFile\\": "./includes"}
+    }
+}
