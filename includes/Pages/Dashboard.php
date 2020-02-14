@@ -10,11 +10,11 @@
  use \IncludeFile\Api\Callbacks\AdminCallbacks;
  use \IncludeFile\Api\Callbacks\ManageCallbacks;
 
- class Admin extends BaseController {
+ class Dashboard extends BaseController {
 
     public $settings;
-    public $pages;
-    public $subpages;
+    public $pages = [];
+   // public $subpages = [];
     public $callbacks;
 
     public function register() {
@@ -23,13 +23,12 @@
         $this->callbacks = new AdminCallbacks();
         $this->callbacks_mngr = new ManageCallbacks();
         $this->setPages();
-        $this->setSubPages();
+        // $this->setSubPages();
         $this->setSettings();
         $this->setSections();
         $this->setFields();
 
-        $this->settings->addPages($this->pages)->withSubpages('Dashboard')
-            ->addSubPages($this->subpages)->register();
+        $this->settings->addPages($this->pages)->withSubpages('Dashboard')->register();
     }
 
     public function setPages() {
@@ -48,28 +47,7 @@
         ];
     }
 
-    public function setSubPages() {
-
-        $this->subpages = [
-            [
-                'parent_slug' => 'bsardo_plugin',
-                'page_title' => 'Items',
-                'menu_title' => 'Manage Items',
-                'capability' => 'manage_options',
-                'menu_slug' => 'manage_items',
-                'callback' => array($this->callbacks, 'manageItems'),
-            ],
-            [
-                'parent_slug' => 'bsardo_plugin',
-                'page_title' => 'Customers',
-                'menu_title' => 'Manage Customers',
-                'capability' => 'manage_options',
-                'menu_slug' => 'manage_customers',
-                'callback' => array($this->callbacks, 'manageCustomer'),
-            ]
-        ];
-
-    }
+   
 
     public function setSettings() {
 

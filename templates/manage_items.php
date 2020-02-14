@@ -1,1 +1,0 @@
-<h1> Manage Items </h1>

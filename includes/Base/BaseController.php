@@ -18,9 +18,9 @@
         $this->plugin = plugin_basename(dirname(__FILE__, 3)) . '/bsardoplugin.php';
 
         $this->managers = [
-            'dashboard' => 'Dashboard',
-            'manage_items' => 'Manage Items',
-            'manage_customers' => 'Manage Customers'
+            'custom_post_type_mngr' => 'CPT Manager',
+            'gallery_options' => 'Gallery Options',
+            'testimonials' => 'Manage Testimonials'
         ];
 
      }

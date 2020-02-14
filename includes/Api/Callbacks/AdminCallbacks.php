@@ -9,12 +9,16 @@ class AdminCallbacks extends BaseController {
         return require_once("$this->plugin_path/templates/index.php");
     }
 
-    public function manageItems() {
-        return require_once("$this->plugin_path/templates/manage_items.php");
+    public function cptManager() {
+        return require_once("$this->plugin_path/templates/cptManager.php");
     }
 
-    public function manageCustomer() {
-        return require_once("$this->plugin_path/templates/manage_customer.php");
+    public function galleryOptions() {
+        return require_once("$this->plugin_path/templates/galleryOptions.php");
+    }
+
+    public function testimonials() {
+        return require_once("$this->plugin_path/templates/testimonials.php");
     }
 
     // public function bsardo_option_group($input) {

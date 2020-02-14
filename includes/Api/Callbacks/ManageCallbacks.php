@@ -31,9 +31,10 @@ use IncludeFile\Base\BaseController;
         $classes = $args['class'];
         $passPageValue = $args['passPageValue'];
         $checkbox = get_option($passPageValue);
+        $checked = isset($checkbox[$chk_name]) ? ($checkbox[$chk_name] ? true : false): false;
 
         echo '<input type="checkbox" id="'.$chk_name.'" name="'.$passPageValue.'['.$chk_name.']" 
-                value="1" class="" '.($checkbox[$chk_name] ? 'checked' : '') .'>';
+                value="1" class="" '. ($checked ? 'checked' : '') .'>';
        
     
     }  
@@ -41,4 +42,4 @@ use IncludeFile\Base\BaseController;
 
 
 
- }
+ }  

@@ -9,7 +9,10 @@ class Init {
 
     public static function get_services() {
          return [
-            Pages\Admin::class,
+            Pages\Dashboard::class,
+            Base\CustomPostTypeCtrl::class,
+            Base\GalleryController::class,
+            Base\TestimonialsCtrl::class,
             Base\Enqueue::class,
             Base\SettingsLinks::class
          ];
