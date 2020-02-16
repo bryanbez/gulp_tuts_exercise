@@ -21,15 +21,6 @@ class AdminCallbacks extends BaseController {
         return require_once("$this->plugin_path/templates/testimonials.php");
     }
 
-    // public function bsardo_option_group($input) {
-    //     // input validation
-    //     return $input;
-    // }
-
-    // public function bsardo_admin_section() {
-    //     echo 'This is the Section';
-    // }
-
     public function bsardo_fields() {
         $setValueInput = esc_attr(get_option('sample_name'));
         echo '<input type="text" class="regular-text" name="sample_name" value="'.$setValueInput.'" placeholder="...">';

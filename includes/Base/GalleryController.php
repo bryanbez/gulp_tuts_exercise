@@ -14,12 +14,7 @@
 
     public function register() {
 
-        $option_name = get_option('bsardo_plugin');
-        $checked_option = isset($option_name['gallery_options']) ? $option_name['gallery_options'] : false;
-        
-        if (!$checked_option) { 
-            return ; 
-        }
+        if (!$this->activatedGetOption('gallery_options')) return;
         
         $this->settings = new SettingsApi(); 
         $this->callbacks = new AdminCallbacks();

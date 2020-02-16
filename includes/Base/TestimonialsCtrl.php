@@ -14,12 +14,7 @@
 
     public function register() {
 
-        $option_name = get_option('bsardo_plugin');
-        $checked_option = isset($option_name['testimonials']) ? $option_name['testimonials'] : false;
-
-        if (!$checked_option) { 
-            return ; 
-        }
+        if (!$this->activatedGetOption('testimonials')) return;
         
         $this->settings = new SettingsApi(); 
         $this->callbacks = new AdminCallbacks();

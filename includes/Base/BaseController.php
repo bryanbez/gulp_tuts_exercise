@@ -25,5 +25,11 @@
 
      }
 
+     public function activatedGetOption (string $key) {
+         
+        $option = get_option('bsardo_plugin');
+        return isset($option[$key]) ? $option[$key] : false; 
+     }
+
 
  }
