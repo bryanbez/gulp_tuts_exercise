@@ -27,6 +27,10 @@ const htmlSRC = './src/**/*.html';
 const htmlURL = './assets/';
 const htmlToWatch = './src/**/*.html';
 
+// const phpFileSRC = './templates/**/*.php';
+// const phpURL = './templates/';
+// const phpToWatch = './templates/**/*.php';
+
 
 function CSSstyle (cb) { 
     src(styleSRC)
@@ -76,11 +80,17 @@ function triggerPlumber(source, url_link) {
             .pipe( dest(url_link));
 }
 
+// function phpFiles() {
+
+//     return triggerPlumber(phpFileSRC, phpURL);
+
+// };
+
 function htmlFiles() {
 
     return triggerPlumber(htmlSRC, htmlURL);
 
-};
+}
 
 function browserSync() {
     browser_sync.init({
@@ -101,6 +111,7 @@ function watchFiles() {
     watch(stylesToWatch, series(CSSstyle, reload));
     watch(scriptsToWatch, series(JSscript, reload));
     watch(htmlToWatch, series(htmlFiles, reload));
+    // watch(phpToWatch, series(phpFiles, reload));
 };
 
 task('CSSstyle', CSSstyle);

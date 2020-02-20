@@ -91,7 +91,7 @@
                 'page' => 'bsardo_cpt', 
                 'section' => 'bsardo_admin_cpt_index',
                 'args' => [
-                    'passPageValue' => 'bsardo_cpt',
+                    'passPageValue' => 'bsardo_plugin_cpt',
                     'label_for' => 'post_type',
                     'placeholder' => 'eg. post_type'
                 ]
@@ -106,7 +106,7 @@
                 'page' => 'bsardo_cpt', 
                 'section' => 'bsardo_admin_cpt_index',
                 'args' => [
-                    'passPageValue' => 'bsardo_cpt',
+                    'passPageValue' => 'bsardo_plugin_cpt',
                     'label_for' => 'singular_name',
                     'placeholder' => 'eg. Post Type'
                 ]
@@ -115,19 +115,19 @@
                 'id' => 'plural_name',
                 'title' => 'Plural Name',
                 'callback' => [
-                    $this->cpt_callbacks,
+                    $this->cpt_callbacks,  
                     'textBoxField'
                 ],
                 'page' => 'bsardo_cpt', 
                 'section' => 'bsardo_admin_cpt_index',
                 'args' => [
-                    'passPageValue' => 'bsardo_cpt',
+                    'passPageValue' => 'bsardo_plugin_cpt',
                     'label_for' => 'plural_name',
                     'placeholder' => 'eg. Post Types'
                 ]
             ],
             [
-                'id' => 'has_archives',
+                'id' => 'has_archive',
                 'title' => 'Has Archives',
                 'callback' => [
                     $this->cpt_callbacks,
@@ -136,8 +136,8 @@
                 'page' => 'bsardo_cpt', 
                 'section' => 'bsardo_admin_cpt_index',
                 'args' => [
-                    'passPageValue' => 'bsardo_cpt',
-                    'label_for' => 'has_archives',
+                    'passPageValue' => 'bsardo_plugin_cpt',
+                    'label_for' => 'has_archive',
                     'class' => 'form-control'
                 ]
             ],
@@ -151,7 +151,7 @@
                 'page' => 'bsardo_cpt', 
                 'section' => 'bsardo_admin_cpt_index',
                 'args' => [
-                    'passPageValue' => 'bsardo_cpt',
+                    'passPageValue' => 'bsardo_plugin_cpt',
                     'label_for' => 'public',
                     'class' => 'form-control'
                 ]
@@ -179,52 +179,59 @@
     }
 
     public function storeCustomPostTypeContent() {
-        
-        $this->custom_post_types[] = [
-            'post_type' => 'bsardo_custom_type',
-            'name' => 'Your Own Post Types',
-            'singular_name' => 'Your Own Post Type',
-            'menu_name' => '',
-            'name_admin_bar' => '',
-            'archives' => '',
-            'attributes' => '',
-            'parent_item_colon' => '',
-            'all_items' => '',
-            'add_new_item' => '',
-            'add_new' => '',
-            'new_item' => '',
-            'edit_item' => '',
-            'update_item' => '',
-            'view_item' => '',
-            'view_items' => '',
-            'search_items' => '',
-            'not_found' => '',
-            'not_found_in_trash' => '',
-            'featured_image' => '',
-            'set_featured_image' => '',
-            'remove_featured_image' => '',
-            'insert_into_item' => '',
-            'uploaded_to_this_item' => '',
-            'items_list' => '',
-            'items_list_navigation' => '',
-            'filter_items_list' => '',
-            'label' => '',
-            'description' => '',
-            'supports' => false,
-            'taxonomies' => [],
-            'hierarchical' => false,
-            'public' => true,
-            'show_ui' => true,
-            'show_in_menu' => true,
-            'menu_position' => 5,
-            'show_in_admin_bar' => true,
-            'show_in_nav_menus' => true,
-            'can_export' => true,
-            'has_archive' => true,
-            'excluded_from_search' => false,
-            'capability_type' => 'page',
-        ];
-    }
+
+        $options = get_option('bsardo_plugin_cpt') ?: [];
+   
+            foreach ($options as $option) {
+            
+              $this->custom_post_types[] = [
+                  'post_type' => $option['post_type'],
+                  'name' => $option['plural_name'],
+                  'singular_name' => $option['singular_name'],
+                  'menu_name' => $option['plural_name'],
+                  'name_admin_bar' => $option['singular_name'],
+                  'archives' => $option['singular_name'] . ' Archives',
+                  'attributes' => $option['singular_name']. ' Attributes',
+                  'parent_item_colon' => 'Parent '.$option['singular_name'],
+                  'all_items' => 'All '. $option['plural_name'],
+                  'add_new_item' => 'Add New '.$option['singular_name'],
+                  'add_new' => 'Add New',
+                  'new_item' => 'New '. $option['singular_name'],
+                  'edit_item' => 'Edit'. $option['singular_name'],
+                  'update_item' => 'Update'. $option['singular_name'],
+                  'view_item' => 'View'. $option['singular_name'],
+                  'view_items' => 'View'. $option['plural_name'],
+                  'search_items' => 'Search'. $option['plural_name'],
+                  'not_found' => 'No'. $option['singular_name']. ' Found.',
+                  'not_found_in_trash' => 'No'. $option['singular_name']. ' Found in Trash',
+                  'featured_image' => 'Featured Image Mo',
+                  'set_featured_image' => 'Set Featured Image',
+                  'remove_featured_image' => 'Remove Featured Image',
+                  'insert_into_item' => 'Insert into '. $option['singular_name'],
+                  'uploaded_to_this_item' => 'Upload to this'. $option['singular_name'],
+                  'items_list' => $option['singular_name']. ' List',
+                  'items_list_navigation' => $option['plural_name']. ' List Navigation',
+                  'filter_items_list' => 'Filter'. $option['plural_name']. ' List',
+                  'label' => $option['singular_name'],
+                  'description' => $option['plural_name']. ' Custom Post Type',
+                  'supports' => false,
+                  'taxonomies' => ['category, post_tag'] ,
+                  'hierarchical' => false,
+                  'public' => isset($option['public']) ?: false,
+                  'show_ui' => true,
+                  'show_in_menu' => true,
+                  'menu_position' => 5,
+                  'show_in_admin_bar' => true,
+                  'show_in_nav_menus' => true,
+                  'can_export' => true,
+                  'has_archive' => isset($option['has_archive']) ?: false,
+                  'excluded_from_search' => false,
+                  'capability_type' => 'post',
+              ];
+  
+          }  
+      }
+  
 
     public function activateCustomPostTypeCtrl() {
 

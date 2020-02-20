@@ -31,24 +31,6 @@
         $this->settings->addPages($this->pages)->withSubpages('Dashboard')->register();
     }
 
-    public function setPages() {
-
-        $this->pages = [
-            [ 
-                'page_title' => 'BSardo Plugin',
-                'menu_title' => 'BSardoPlugin',
-                'capability' => 'manage_options',
-                'menu_slug' => 'bsardo_plugin',
-                'callback' => array($this->callbacks, 'adminDashboard'),
-                'icon_url' => 'dashicons-store',
-                'position' => 110
-            ],
-
-        ];
-    }
-
-   
-
     public function setSettings() {
 
         $args = [
@@ -63,6 +45,23 @@
         ];
 
         $this->settings->setSettings($args);
+    }
+
+
+    public function setPages() {
+
+        $this->pages = [
+            [ 
+                'page_title' => 'BSardo Plugin',
+                'menu_title' => 'BSardoPlugin',
+                'capability' => 'manage_options',
+                'menu_slug' => 'bsardo_plugin',
+                'callback' => array($this->callbacks, 'adminDashboard'),
+                'icon_url' => 'dashicons-store',
+                'position' => 110
+            ],
+
+        ];
     }
 
     public function setSections() {

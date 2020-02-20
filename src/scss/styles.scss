@@ -45,3 +45,43 @@
     background-color: #fff;
 
 }
+
+.tableCptManager {
+    width: 100%;
+
+} 
+
+.tableCptManager td{
+    border: 1px solid;
+    padding: 10px;
+
+} 
+
+.tableCptManager th {
+    border: 1px solid;
+    background-color: #ddd;
+    text-align: left;
+    padding: 10px;
+}
+
+
+#submit_edit {
+    color: white;
+    background-color: blue;
+    font-weight: bold;
+    // padding: 10px 20px 10px 20px;  // top, right, bottom, left
+    border-radius: 10em;
+    text-decoration: none;
+}
+
+#submit_delete {
+    color: white;
+    background-color: red;
+    font-weight: bold;
+    border-radius: 10em;
+    text-decoration: none;
+}
+
+.noCustomPostType {
+    text-align: center;
+}

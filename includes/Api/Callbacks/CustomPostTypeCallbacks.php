@@ -18,7 +18,30 @@ namespace IncludeFile\Api\Callbacks;
 
     public function CPTSanitize( $input ) {
 
-        return $input;
+        $output = get_option('bsardo_plugin_cpt');
+
+        //remove custom post type
+        if (isset($_POST['remove_post_type'])) {
+
+            unset($output[$_POST['remove_post_type']]);
+            return $output;
+        }
+
+        if (count($output) == 0) {
+            $output[$input['post_type']] = $input;
+            return $output;
+        }
+    
+        foreach($output as $key => $value) {
+            
+            if ($input['post_type'] === $key) {
+                $output[$key] = $input; // Update Existing Record
+            } else {
+                $output[$input['post_type']] = $input; // Add Record
+            }
+        }
+    
+        return $output;
 
     }
 
@@ -26,19 +49,28 @@ namespace IncludeFile\Api\Callbacks;
 
         $txt_name = $args['label_for'];
         $passPageValue = $args['passPageValue'];
-        $textbox = get_option($passPageValue);
-        $placeholder = $args['placeholder'];
+        $value = '';
+        $checkPostType = ($txt_name === 'post_type') ? 'readonly' : '';
 
-        echo '<input type="text" class="regular-text" id="'.$txt_name.'" name="'.$passPageValue.'['.$txt_name.']"
-             value="'.$textbox.'" placeholder="'.$placeholder.'"';
+        if(isset($_POST['edit_post_type'])) {
+            $textbox = get_option($passPageValue);
+            $value = $textbox[$_POST['edit_post_type']][$txt_name];
+        }
+
+        echo '<input type="text" class="regular-text '.$checkPostType.'" id="'.$txt_name.'" name="' . $passPageValue. '[' . $txt_name .
+        ']" value="'.$value.'" placeholder="'.$args['placeholder'].'" required>';
     }
 
     public function checkBoxField($args) {
         $chk_name = $args['label_for'];
         $classes = $args['class'];
         $passPageValue = $args['passPageValue'];
-        $checkbox = get_option($passPageValue);
-        $checked = isset($checkbox[$chk_name]) ? ($checkbox[$chk_name] ? true : false): false;
+        $checked = false;
+
+        if(isset($_POST['edit_post_type'])) {
+            $checkbox = get_option($passPageValue);
+            $checked = isset($checkbox[$_POST['edit_post_type']][$chk_name]) ?: false;
+        }
 
         echo '<input type="checkbox" id="'.$chk_name.'" name="'.$passPageValue.'['.$chk_name.']" 
                 value="1" class="" '. ($checked ? 'checked' : '') .'>';
