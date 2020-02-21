@@ -11,6 +11,7 @@ class Init {
          return [
             Pages\Dashboard::class,
             Base\CustomPostTypeCtrl::class,
+            Base\TaxonomiesCtrl::class,
             Base\GalleryController::class,
             Base\TestimonialsCtrl::class,
             Base\Enqueue::class,

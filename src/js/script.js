@@ -1,8 +1,12 @@
 import App from './modules/app.js';
+import 'code-prettify';
+
 const app = new App();
 
-
 window.addEventListener("load", function() {
+
+    PR.prettyPrint();
+
     const tabs = document.querySelectorAll("ul.nav-tabs > li");
 
     for (var i = 0; i < tabs.length; i++) {

@@ -31,5 +31,8 @@
     "presets": [
       "@babel/preset-env"
     ]
+  },
+  "dependencies": {
+    "code-prettify": "^0.1.0"
   }
 }

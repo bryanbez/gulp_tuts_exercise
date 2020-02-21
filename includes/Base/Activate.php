@@ -22,6 +22,10 @@
             update_option('bsardo_plugin_cpt', $default); // generate bsardo_plugin_cpt field in wp_option table in database
         }
 
+         if (! get_option('bsardo_plugin_tax')) {
+            update_option('bsardo_plugin_tax', $default); // generate bsardo_plugin_tax field in wp_option table in database
+        }
+
 
     }
  }

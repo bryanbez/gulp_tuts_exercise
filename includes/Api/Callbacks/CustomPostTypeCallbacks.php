@@ -50,28 +50,28 @@ namespace IncludeFile\Api\Callbacks;
         $txt_name = $args['label_for'];
         $passPageValue = $args['passPageValue'];
         $value = '';
-        $checkPostType = ($txt_name === 'post_type') ? 'readonly' : '';
+        $checkPostType = (isset($_POST['edit_post_type']) ? (($txt_name === 'post_type') ? 'readonly' : '') : null);
 
         if(isset($_POST['edit_post_type'])) {
-            $textbox = get_option($passPageValue);
+            $textbox = get_option($passPageValue); 
             $value = $textbox[$_POST['edit_post_type']][$txt_name];
         }
 
-        echo '<input type="text" class="regular-text '.$checkPostType.'" id="'.$txt_name.'" name="' . $passPageValue. '[' . $txt_name .
-        ']" value="'.$value.'" placeholder="'.$args['placeholder'].'" required>';
+        echo '<input type="text" class="regular-text" id="'.$txt_name.'" name="' . $passPageValue. '[' . $txt_name .
+        ']" value="'.$value.'" placeholder="'.$args['placeholder'].'" required '.$checkPostType.'>';
     }
 
     public function checkBoxField($args) {
         $chk_name = $args['label_for'];
         $classes = $args['class'];
         $passPageValue = $args['passPageValue'];
-        $checked = false;
+        $checked = false; 
 
         if(isset($_POST['edit_post_type'])) {
             $checkbox = get_option($passPageValue);
             $checked = isset($checkbox[$_POST['edit_post_type']][$chk_name]) ?: false;
         }
-
+        
         echo '<input type="checkbox" id="'.$chk_name.'" name="'.$passPageValue.'['.$chk_name.']" 
                 value="1" class="" '. ($checked ? 'checked' : '') .'>';
        

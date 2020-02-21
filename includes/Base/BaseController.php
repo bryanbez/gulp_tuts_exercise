@@ -20,8 +20,9 @@
         $this->managers = [
             'custom_post_type_mngr' => 'CPT Manager',
             'gallery_options' => 'Gallery Options',
-            'testimonials' => 'Manage Testimonials'
-        ];
+            'testimonials' => 'Manage Testimonials',
+            'taxonomies_manager' => 'Taxonomies'
+        ]; // this is displayed in the dashboard with checkbox
 
      }
 

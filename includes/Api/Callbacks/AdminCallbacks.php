@@ -17,6 +17,10 @@ class AdminCallbacks extends BaseController {
         return require_once("$this->plugin_path/templates/galleryOptions.php");
     }
 
+     public function taxonomiesManager() {
+        return require_once("$this->plugin_path/templates/taxonomies.php");
+    }
+
     public function testimonials() {
         return require_once("$this->plugin_path/templates/testimonials.php");
     }

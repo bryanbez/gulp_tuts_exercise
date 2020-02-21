@@ -1,5 +1,6 @@
-@import 'base/variable.scss';
+@import './../../node_modules/code-prettify/styles/sons-of-obsidian.css';
 
+@import 'base/variable.scss';
 
 .nav-tabs {
     width: $default_width;
