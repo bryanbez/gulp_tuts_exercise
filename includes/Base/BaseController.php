@@ -21,7 +21,8 @@
             'custom_post_type_mngr' => 'CPT Manager',
             'gallery_options' => 'Gallery Options',
             'testimonials' => 'Manage Testimonials',
-            'taxonomies_manager' => 'Taxonomies'
+            'taxonomies_manager' => 'Taxonomies',
+            'custom_widgets' => 'Widgets'
         ]; // this is displayed in the dashboard with checkbox
 
      }

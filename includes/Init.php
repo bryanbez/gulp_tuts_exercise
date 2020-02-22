@@ -10,6 +10,7 @@ class Init {
     public static function get_services() {
          return [
             Pages\Dashboard::class,
+            Base\WidgetsCtrl::class,
             Base\CustomPostTypeCtrl::class,
             Base\TaxonomiesCtrl::class,
             Base\GalleryController::class,
