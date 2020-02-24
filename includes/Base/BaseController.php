@@ -22,7 +22,7 @@
             'gallery_options' => 'Gallery Options',
             'testimonials' => 'Manage Testimonials',
             'taxonomies_manager' => 'Taxonomies',
-            'custom_widgets' => 'Widgets'
+            'custom_widgets' => 'Widgets',
         ]; // this is displayed in the dashboard with checkbox
 
      }

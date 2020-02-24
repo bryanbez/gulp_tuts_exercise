@@ -1,4 +1,3 @@
-
 const { task, series, watch, src, dest, parallel } = require('gulp');
 const gulp_rename = require('gulp-rename');
 const gulp_sass = require('gulp-sass');
@@ -13,27 +12,25 @@ const browser_sync = require('browser-sync').create();
 const plumber = require('gulp-plumber');
 
 const styleSRC = 'src/scss/styles.scss';
+const formStyleSrc = 'src/scss/form.scss';
 const styleASSESTS = './assets/sass/';
 const stylesToWatch = 'src/scss/**/*.scss';
 
 const scriptSRC = 'script.js';
+const formScriptSRC = 'form.js';
 const scriptFolder = 'src/js/';
 const scriptASSESTS = './assets/js/';
 const scriptsToWatch = 'src/js/**/*.js';
 const scriptURL = './assets/js/';
-const scriptFiles = [scriptSRC];
+const scriptFiles = [scriptSRC, formScriptSRC];
 
 const htmlSRC = './src/**/*.html';
 const htmlURL = './assets/';
 const htmlToWatch = './src/**/*.html';
 
-// const phpFileSRC = './templates/**/*.php';
-// const phpURL = './templates/';
-// const phpToWatch = './templates/**/*.php';
 
-
-function CSSstyle (cb) { 
-    src(styleSRC)
+function CSSstyle(cb) {
+    src([styleSRC, formStyleSrc])
         .pipe(gulp_sourcemaps.init())
         .pipe(gulp_sass({
             errorLogToConsole: true,
@@ -50,12 +47,12 @@ function CSSstyle (cb) {
         .pipe(gulp_sourcemaps.write('./'))
         .pipe(dest(styleASSESTS));
 
-        cb();
+    cb();
 };
 
 function JSscript(cb) {
-        scriptFiles.map(function(entry) {
-            return gulp_browserify({
+    scriptFiles.map(function(entry) {
+        return gulp_browserify({
                 entries: [scriptFolder + entry]
             }).transform(babelify, {
                 presets: ['@babel/preset-env']
@@ -66,18 +63,18 @@ function JSscript(cb) {
             }))
             .pipe(vinyl_buffer())
             .pipe(gulp_sourcemaps.init({ loadMaps: true }))
-            .pipe(gulp_uglify() )
+            .pipe(gulp_uglify())
             .pipe(gulp_sourcemaps.write('./'))
             .pipe(dest(scriptASSESTS))
-        });
+    });
 
-        cb();
+    cb();
 };
 
 function triggerPlumber(source, url_link) {
-    return src( source )
-            .pipe( plumber() )
-            .pipe( dest(url_link));
+    return src(source)
+        .pipe(plumber())
+        .pipe(dest(url_link));
 }
 
 // function phpFiles() {
@@ -120,5 +117,3 @@ task('JSscript', JSscript);
 
 task('default', parallel(CSSstyle, JSscript, htmlFiles));
 task("watch", parallel(browserSync, watchFiles));
-
-  
